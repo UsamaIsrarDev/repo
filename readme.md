@@ -1,5 +1,5 @@
-Date: March 1st, 2026 (Sunday)
+Date: March 2nd, 2026 (Monday)
 
 HTML Web APIs
 
-1. Geolocation
+2. Drag and drop

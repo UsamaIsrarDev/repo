@@ -1,44 +1,35 @@
-const x = document.getElementById("result");
+function dragStartHandler(ev) {
+  ev.dataTransfer.setData("Text", ev.target.id);
+}
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    x.innerHTML = "Gelocation is not supported in your browser!";
+function dragOverHandler(ev) {
+  ev.preventDefault();
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+const nums = [2, 4, 35, 6, 57, 1, 6, 8, 8, 45, 3, 4, 2, 3, 23, 3, 5, 45];
+
+const target = 8;
+
+function twoSum(nums, target) {
+  const result = [];
+  for (let index = 0; index < nums.length; index++) {
+    const key = index;
+    const element = nums[index] + nums[index + 1];
+    console.log(element);
+    if (element === target) {
+      result[0] = key;
+      result[1] = key + 1;
+      return result;
+    }
   }
 }
 
-function success(position) {
-  x.innerHTML =
-    "Latitude " +
-    position.coords.latitude +
-    "<br/> Longitude " +
-    position.coords.longitude;
-}
+const output = twoSum(nums, target);
 
-// function error() {
-//   alert("Geolocation fetch failed!");
-// }
-
-function error(error) {
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      x.innerHTML = "Permission denied";
-      break;
-
-    case error.TIMEOUT:
-      x.innerHTML = "Time out";
-      break;
-
-    case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occured";
-      break;
-
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Position unavailable";
-      break;
-
-    default:
-      break;
-  }
-}
+console.log(output);

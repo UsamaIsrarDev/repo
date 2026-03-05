@@ -4,13 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML Web APIs</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Geolocation API</h1>
+    <h1>Drag and Drop API</h1>
 
-    <p id="result"></p>
+    <div
+      id="emptyDiv"
+      ondrop="dropHandler(event)"
+      ondragover="dragOverHandler(event)"
+    ></div>
 
-    <button onclick="getLocation()">Click me to view my location</button>
+    <img
+      src="./html.png"
+      alt="html understanding"
+      width="500px"
+      height="500px"
+      draggable="true"
+      ondragstart="dragStartHandler(event)"
+      id="ourImg"
+    />
 
     <script src="./script.js"></script>
   </body>
