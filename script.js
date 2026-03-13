@@ -1,35 +1,40 @@
-function dragStartHandler(ev) {
-  ev.dataTransfer.setData("Text", ev.target.id);
-}
+import { createStore } from "redux";
 
-function dragOverHandler(ev) {
-  ev.preventDefault();
-}
+const products = [];
 
-function dropHandler(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
+const productReducer = (state = products, action) => {
+  const { type, payload } = action;
 
-const nums = [2, 4, 35, 6, 57, 1, 6, 8, 8, 45, 3, 4, 2, 3, 23, 3, 5, 45];
+  switch (type) {
+    case "add":
+      return [...state, { id: payload.id, name: payload.name }];
 
-const target = 8;
+    case "remove":
+      return state.filter((product) => product.id !== payload.id);
 
-function twoSum(nums, target) {
-  const result = [];
-  for (let index = 0; index < nums.length; index++) {
-    const key = index;
-    const element = nums[index] + nums[index + 1];
-    console.log(element);
-    if (element === target) {
-      result[0] = key;
-      result[1] = key + 1;
-      return result;
-    }
+    default:
+      return state;
   }
-}
+};
 
-const output = twoSum(nums, target);
+const productStore = createStore(productReducer);
 
-console.log(output);
+const addProduct = (id, name) => ({
+  type: "add",
+  payload: { id: id, name: name },
+});
+
+const removeProduct = (id) => ({
+  type: "remove",
+  payload: { id: id },
+});
+
+productStore.dispatch(addProduct(1, "Toffee"));
+productStore.dispatch(addProduct(2, "Milk"));
+productStore.dispatch(addProduct(3, "Rise"));
+productStore.dispatch(addProduct(4, "Drink"));
+productStore.dispatch(addProduct(5, "Lobster"));
+
+productStore.dispatch(removeProduct(4));
+
+console.log(productStore.getState());
