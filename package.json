@@ -20,5 +20,8 @@
   "homepage": "https://github.com/UsamaIsrarDev/dev-daily#readme",
   "dependencies": {
     "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
