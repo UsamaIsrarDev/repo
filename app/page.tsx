@@ -1,9 +1,9 @@
-import AuthButton from "@/components/Button";
+import Robot from "@/components/Robo";
 
 export default function Home() {
   return (
     <div>
-      <AuthButton />
+      <Robot />
     </div>
   );
 }
